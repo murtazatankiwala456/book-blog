@@ -1,0 +1,23 @@
+<%- include("partials/header.ejs") %>
+<h1>Add Your Book</h1>
+
+<form action="/add-book" method="post">
+  <div class="form-group mb-3">
+    <label>Title</label>
+    <input type="text" class="form-control" name="title" />
+
+    <label>Reviews</label>
+    <textarea
+      cols="30"
+      rows="10"
+      class="form-control"
+      name="description"
+    ></textarea>
+
+    <label>Author</label>
+    <input type="text" class="form-control" name="author" />
+  </div>
+
+  <button class="btn btn-success">Publish</button>
+</form>
+<%- include("partials/footer.ejs") %>

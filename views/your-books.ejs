@@ -1,0 +1,13 @@
+<%- include("partials/header.ejs") %>
+<h1>Your Books Reviews📓</h1>
+<% books.forEach((book) =>{ %>
+    <div class="shadow">
+<h1><%= book.title %></h1>
+<p><%= book.description.substring(0,100) + "..." %></p>
+<small><%= book.author %></small>
+<div>
+  <a href="/books/<%=book.title %>">Read More</a>
+</div>
+</div>
+
+<%})%> <%- include("partials/footer.ejs") %>
