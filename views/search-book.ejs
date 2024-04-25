@@ -1,0 +1,25 @@
+<%- include("partials/header.ejs") %>
+<h1>Search Book</h1>
+<form action="/search-book" method="post">
+<div class="form-group mb-3">
+    <input type="text" class="form-control" placeholder="Enter the topic" name="topic">
+</div>
+
+    <button class="btn btn-primary ">Search </button>
+</form>
+
+    <%if(locals.book){ %>
+        <h2>Title:</h2>
+        <h3><%= book.results[0].title %></h3>
+        <h2>Author:</h2>
+        <h3><%= book.results[0].authors[0].name %></h3>
+
+  <%  } if(locals.error){ %>
+    <h4><%= error %></h4>
+    
+  <%} %>
+
+
+
+
+<%- include("partials/footer.ejs") %>

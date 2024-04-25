@@ -1,6 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import _ from "lodash";
+import axios from "axios";
 
 const app = express();
 
@@ -25,6 +26,25 @@ app.post("/add-book", (req, res) => {
   };
   books.push(newBook);
   res.redirect("/");
+});
+app.get("/search-book", (req,res) =>{
+  res.render("search-book.ejs")
+});
+
+app.post("/search-book",async (req,res) =>{
+  const topic =req.body.topic;
+  try{
+  const response = await axios.get(`https://gutendex.com/books/`, {params:{topic:topic}});
+  const book = response.data;
+  console.log(book.results[0].title);
+  console.log(book.results[0].authors[0].name);
+  res.render("search-book.ejs", {book:book})
+  }catch(error){
+    console.log(error.message)
+    res.render("search-book.ejs", {error:"Sorry! Book not available for this topic"})
+  }
+  
+  
 });
 
 app.get("/books/:title", (req, res) => {
