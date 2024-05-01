@@ -3,13 +3,14 @@ import bodyParser from "body-parser";
 import _ from "lodash";
 import axios from "axios";
 import mongoose from "mongoose";
+import 'dotenv/config'
 
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-mongoose.connect('mongodb://127.0.0.1:27017/bookDB');
+mongoose.connect(process.env.mongodb_URI);
 
 const bookSchema = {
   title: String,
